@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        body {
+            background: url('/images/admin-logo.jpg') no-repeat center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background-blend-mode:soft-light;
+        }
+        .login {
+            position: relative;
+            height: 560px;
+            width: 405px;
+            margin: auto;
+            padding: 60px 60px;
+            background-color: rgba(0, 0, 0, 0.718);
+            background-size: cover;
+        }
+        form {
+            padding-top: 80px;
+        }
+        .active {
+            border-bottom: 2px solid #1161ed;
+        }
+        .nonactive {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        h2 {
+            padding-left: 12px;
+            font-size: 22px;
+            text-transform: uppercase;
+            padding-bottom: 5px;
+            letter-spacing: 2px;
+            display: inline-block;
+            font-weight: 100;
+        }
+        h2:first-child {
+            padding-left: 0px;
+        }
+        span {
+            text-transform: uppercase;
+            font-size: 12px;
+            opacity: 0.4;
+            display: inline-block;
+            position: relative;
+            top: -65px;
+            transition: all 0.5s ease-in-out;
+        }
+        .text {
+            border: none;
+            width: 89%;
+            padding: 10px 20px;
+            display: block;
+            height: 15px;
+            border-radius: 20px;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0);
+        }
+        .signin {
+            padding: 10px 20px;
+            background-color: #1161ed;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/register_login"><img src="/images/logo.jpg" alt="Company Logo" height="50px" width="150px"></a>
+    </div>
+    <div class="login">
+        <h2 class="active">Admin Login</h2>
+        <form onsubmit="return login()" autocomplete="off">
+            <input type="text" class="text" id="username" name="username" placeholder="Username" required autofocus>
+            <span style="color:white;">Username</span><br><br>
+            <input type="password" class="text" id="password" name="password" placeholder="Password" required>
+            <span>Password</span><br>
+            <button type="submit" class="signin">Sign In</button>
+        </form>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            // Dummy authentication, replace with actual authentication logic
+            if (username === 'admin123' && password === 'Dhaara@123') {
+                // Redirect to dashboard page
+                window.location.href = '/admin/dashboard';
+                return false;
+            } else {
+                alert('Incorrect username or password.');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

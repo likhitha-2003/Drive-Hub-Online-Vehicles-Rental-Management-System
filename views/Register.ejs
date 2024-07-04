@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        body {
+            /*background-image: url('/images/carandbike1.jpg');*/
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f3f3;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .navbar {
+            background-color:rgba(0, 0, 0, 0.745);
+            padding: 0px;
+        
+        }
+        .navbar img {
+            margin:10px
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="file"] {
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"] + label {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-right: 10px;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="radio"]:checked + label {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #555;
+        }
+
+        .terms {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .note {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+        span {
+            color: red;
+        }
+        .hide
+        {
+            display: none;
+        }
+        .popup{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 300px;
+}
+.popup-container {
+    text-align: center;
+}
+.popup button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin:20px
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/register_login"><img src="/images/logo.jpg" alt="Company Logo" height="50px" width="150px"></a>
+    </div>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form   action="/newregister" method="POST" id="myForm" autocomplete="off">
+            <div class="form-group">
+                <label for="firstName">First Name<span>*</span></label>
+                <input type="text" id="firstName" name="firstname" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name<span>*</span></label>
+                <input type="text" id="lastName" name="lastname" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone No<span>*</span></label>
+                <input type="tel" id="phone" name="phoneno" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label>Gender<span>*</span></label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="others" name="gender" value="others">
+                <label for="others">Others</label>
+            </div>
+            <div class="form-group">
+                <label for="address">Address<span>*</span></label>
+                <input type="text" id="address" name="address" placeholder="Enter your address" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth<span>*</span></label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="altPhone">Alternative Phone No</label>
+                <input type="tel" id="altPhone" name="altphoneno" placeholder="Enter your alternative phone number">
+            </div>
+            <div class="form-group">
+                <label for="Gmail">Gmail<span>*</span></label>
+                <input type="text" id="Gmail" name="username" placeholder="Enter your Gmail id" required>
+            </div>
+            <div class="form-group">
+                <label for="Password" >Password<span>*</span></label>
+                <input type="text" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?\\\"  title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long" id="Password" name="password" placeholder="Enter your new password"   required <accept="image/*">
+            </div>
+             <div class="form-group">
+                <p class="terms">View our <a href="/terms">Terms and Conditions</a></p>
+            </div>
+            <div class="form-group">
+               <span> <input type="checkbox" id="termsAgree" required>
+                <label for="termsAgree">I have read and agree to all terms and conditions of the company</label></span>
+            </div>
+            <button type="button" id="submit-btn"  onclick="openPopup()" class="submit-btn">Register</button>
+            <p class="note">Fields marked with <span>*</span> are mandatory</p>
+            <div class="overlay" onclick="closePopupdelete()"></div>
+    <div class="popup">
+        <div class="popup-container">
+               <h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="50">
+                <circle cx="50" cy="50" r="40" fill="green" />
+                <path d="M30 50 L45 65 L70 40" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" />
+              </svg>Registration successful</h1>
+               <div style="display: inline-flex; margin: 20px;"> 
+                <button  type="submit" id="yes-button" >Proceed to login</button>
+               </div>
+        </div>
+    </div>
+           <!-- <div id="procced-btn" class="hide"><button type="button" style="color: black; background-color: green; width: 100px; height: 50px; margin-left: 230px;">Procced to login</button></div>        </form>-->
+    </div>
+    <script>
+        function openPopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+function closePopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+    </script>
+</body>
+</html>

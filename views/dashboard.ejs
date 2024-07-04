@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Admin</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        body {
+            background-image: url('/images/carandbike1.jpg');
+            filter: blur(-50%);
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            background-color: #f0f0f0c8; 
+
+        }
+        .header {
+            background-color: #40b2de; 
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 140px;
+        }
+       
+        .content {
+            margin-left: 220px; /* Adjust for menu width */
+            padding: 20px;
+            color: #333; /* Default text color */
+        }
+        .options {
+            text-align: center;
+            margin-top: 20px;
+            
+        }
+        .options a {
+            border: 2px solid black;
+            width: 500px;
+            height: 50px;
+            align-content: center;
+            display: block;
+            margin-left: 900px;
+            margin-top: 40px;
+            padding: 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #fff; /* Button background color */
+            border-radius: 20px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+        }
+        .options a:hover {
+            background-color: #5dc9ee; /* Hover background color */
+            color: white; /* Hover text color */
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/register_login"><img class="logo" src="/images/logo.jpg" alt="Logo" height="50px" width="150px"></a>
+        <h2>Welcome Admin!</h2>
+        <div id="logout" style="position: absolute; top: 40px; right: 20px;">
+            <button onclick="logout()" style="background-color: red; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Logout</button>
+        </div>
+    </header>
+
+
+    <div class="content">
+        <!-- Content goes here -->
+    </div>
+
+    <div class="options">
+        <a href="/admin/manage_vehicles"><h3>Manage Vehicles</h3></a>
+        <a href="/admin/manage_customers"><h3>Manage Customers</h3></a>
+        <a href="/admin/current_bookings"><h3>Current Bookings</h3></a>
+        <a href="/admin/queries"><h3>Complaints</h3></a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            // Redirect to logout page or perform logout operation
+            window.location.href = '/adminlogin';
+        }
+
+        document.body.addEventListener('click', function(event) {
+            var menuIcon = document.querySelector('.menu-icon');
+            var menu = document.getElementById('menu');
+            if (!menuIcon.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive Payment Gateway Form Design in Hindi</title>
+    <link rel="stylesheet" type="text/css" href="payment.css">
+    <style>
+        #checkout-button {
+            display: block;
+            width: 200px;
+            margin: auto;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+        #payment-status {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            color: green;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+       .right {
+            width: 45%;
+            margin-left: 400px;
+            margin-top: 200px;
+
+        }
+
+         .right h3 {
+            margin-bottom: 10px;
+        }
+
+     .right input, .right select {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+         .right label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+         .right #zip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Increase size of the expiry month dropdown */
+        .right select[name="expmonth"] {
+            height: 40px;
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<header>
+   <!-- <div class="container">
+        <div class="left">
+            <h3>BILLING ADDRESS</h3>
+            <form id="billing-form">
+                <label>
+                    Full name
+                    <input type="text" name="fullname" placeholder="Enter name">
+                </label>
+                <label>
+                    Email
+                    <input type="text" name="email" placeholder="Enter email">
+                </label>
+                <label>
+                    Address
+                    <input type="text" name="address" placeholder="Enter address">
+                </label>
+                <label>
+                    City
+                    <input type="text" name="city" placeholder="Enter City">
+                </label>
+                <div id="zip">
+                    <label>
+                        State
+                
+                            <select name="state">
+                                <option>Choose State..</option>
+                                <option>Andhra Pradesh</option>
+                                <option>Arunachal Pradesh</option>
+                                <option>Assam</option>
+                                <option>Bihar</option>
+                                <option>Chhattisgarh</option>
+                                <option>Goa</option>
+                                <option>Gujarat</option>
+                                <option>Haryana</option>
+                                <option>Himachal Pradesh</option>
+                                <option>Jharkhand</option>
+                                <option>Karnataka</option>
+                                <option>Kerala</option>
+                                <option>Madhya Pradesh</option>
+                                <option>Maharashtra</option>
+                                <option>Manipur</option>
+                                <option>Meghalaya</option>
+                                <option>Mizoram</option>
+                                <option>Nagaland</option>
+                                <option>Odisha</option>
+                                <option>Punjab</option>
+                                <option>Rajasthan</option>
+                                <option>Sikkim</option>
+                                <option>Tamil Nadu</option>
+                                <option>Telangana</option>
+                                <option>Tripura</option>
+                                <option>Uttar Pradesh</option>
+                                <option>Uttarakhand</option>
+                                <option>West Bengal</option>
+                                <option>Andaman and Nicobar Islands</option>
+                                <option>Chandigarh</option>
+                                <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                                <option>Delhi</option>
+                                <option>Lakshadweep</option>
+                                <option>Puducherry</option>
+                            </select>
+                            
+        
+                    </label>
+                    <label>
+                        Pin code
+                        <input type="number" name="zip" placeholder="Pin code" pattern="[0-9]{6}" title="PIN code must be exactly 6 digits">
+                    </label>
+                </div>
+            </form>
+        </div>
+        -->
+        
+</header>
+<script>
+    function url(data)
+    {
+        const data =data;
+const queryString = Object.keys(data)
+  .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+  .join('&');
+
+// Construct the URL with the query string
+const url = `/username/vehicleid/payment?${queryString}`;
+
+// Navigate to the constructed URL
+window.location.href = url;
+    }
+ /*   function submitForm() {
+        // Get form inputs
+        var fullname = document.querySelector('#billing-form [name="fullname"]').value.trim();
+        var email = document.querySelector('#billing-form [name="email"]').value.trim();
+        var address = document.querySelector('#billing-form [name="address"]').value.trim();
+        var cardnumber = document.querySelector('#payment-form [name="cardnumber"]').value.trim();
+        var cvv = document.querySelector('#payment-form [name="cvv"]').value.trim();
+        var pincode = document.querySelector('#billing-form [name="zip"]').value.trim();
+
+        // Validate form inputs
+        if (fullname === '' || email === '' || address === '' || cardnumber === '' || cvv === '' || pincode === '') {
+            alert('Please fill in all fields before proceeding.');
+            return;
+        }
+
+        // Validate name
+        if (fullname.split(' ').length < 2) {
+            alert('Full name must contain at least 2 words.');
+            return;
+        }
+
+        // Validate email
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        // Validate address
+        if (address.split(' ').length < 2) {
+            alert('Address must contain at least 2 words.');
+            return;
+        }
+
+        // Validate card number
+        if (!/^\d{16}$/.test(cardnumber)) {
+            alert('Card number must be exactly 16 digits.');
+            return;
+        }
+
+        // Validate CVV
+        if (!/^\d{3}$/.test(cvv)) {
+            alert('CVV must be exactly 3 digits.');
+            return;
+        }
+
+        // Validate PIN code
+        if (!/^\d{6}$/.test(pincode)) {
+            alert('PIN code must be exactly 6 digits.');
+            return;
+        }
+        // Display payment status
+        document.getElementById('payment-status').style.display = 'block';
+    }*/
+</script>
+</body>
+</html>

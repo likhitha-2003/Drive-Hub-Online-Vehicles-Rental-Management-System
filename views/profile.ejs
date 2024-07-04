@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/images/logo.jpg">
+  <title>User Profile</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+    }
+
+    .navbar {
+      background-color: #111;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    .container {
+      margin: 50px auto;
+      max-width: 900px;
+      height: 500px;
+      padding: 30px;
+      border-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      margin-top: 30px;
+    }
+
+    .detail {
+      margin-bottom: 15px;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .value {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/register_login">
+        <img src="/images/logo.jpg" alt="Logo" height="50px" width="150px">
+      </a>
+    </div>
+    <div class="menu">
+      <a href="/userpage/<%=data.username%>">Home</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>User Profile</h1>
+    <div class="profile-details">
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="#ffc107"/>
+            <circle cx="12" cy="8" r="4" fill="black"/>
+            <path d="M12 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0 2c3.31 0 6 1.34 6 3v2H6v-2c0-1.66 2.69-3 6-3z"/>
+          </svg>          
+   User Name:
+        </span>
+        <span class="value" id="username"><%=data.username%></span>
+      </div>
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <defs>
+              <style>.cls-1{fill:#4CAF50;}.cls-2{fill:#fff;}.cls-3{fill:#455A64;}</style>
+            </defs>
+            <path class="cls-1" d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"/>
+            <path class="cls-2" d="M12,7a4,4,0,0,0-4,4c0,2.64,2.69,4,6,4s6-1.36,6-4a4,4,0,0,0-4-4Z"/>
+            <path class="cls-3" d="M12,15c-2.21,0-4-1.79-4-4s1.79-4,4-4,4,1.79,4,4S14.21,15,12,15Zm0-6c-2.31,0-4,1.34-4,3v1h8v-1C16,9.34,14.31,9,12,9Z"/>
+          </svg>
+                    First Name:
+        </span>
+        <span class="value" id="firstname"><%=data.firstname%></span>
+      </div>
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#ffc107" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M14 7h-4V3H8v4H4v2h4v4h2v-4h4V9h-4V5h-2v2z"/>
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#ffc107">LN</text>
+          </svg>
+                    Last Name:
+        </span>
+        <span class="value" id="lastname"><%=data.lastname%></span>
+      </div>
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#9c27b0" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 19c0 1.1.89 2 1.99 2H17c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H7V7h10v10zm-4-3h2v2h-2v-2zm0-3h2v2h-2V8z"/></svg>
+          Phone Number:
+        </span>
+        <span class="value" id="phoneno"><%=data.phoneno%></span>
+      </div>
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#ffc107" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8S16.41,20,12,20z"/>
+            <path d="M12,7c-2.21,0-4,1.79-4,4s1.79,4,4,4s4-1.79,4-4S14.21,7,12,7z M12,15c-2.31,0-4-1.34-4-3v-1h8v1C16,13.66,14.31,15,12,15z"/>
+            <path d="M12,3c-1.1,0-2,0.9-2,2h4C14,3.9,13.1,3,12,3z"/>
+            <path d="M12,21c1.1,0,2-0.9,2-2h-4C10,20.1,10.9,21,12,21z"/>
+          </svg>          
+          Gender:
+        </span>
+        <span class="value" id="gender"><%=data.gender%></span>
+      </div>
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#ff9800" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 1.99 2H20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 12l-3-3H5c-1.1 0-1.99-.9-1.99-2L3 8c0-1.1.89-2 1.99-2h4c1.1 0 2 .9 2 2v3l3-3 3 3v2l-5 5-5-5v-2zm0-9.5L9.5 9H14V6.5z"/></svg>
+          Address:
+        </span>
+        <span class="value" id="address"><%=data.address%></span>
+      </div>
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#2196f3" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 7V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-1h-8v-2h8V7zm-2 8H6V6h12v9z"/></svg>
+          Date of Birth:
+        </span>
+        <span class="value" id="dob"><%=data.dob%></span>
+      </div>
+      <div class="detail">
+        <span class="label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#9c27b0" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 19c0 1.1.89 2 1.99 2H17c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H7V7h10v10zm-4-3h2v2h-2v-2zm0-3h2v2h-2V8z"/></svg>
+          Alternate Phone:
+        </span>
+        <span class="value" id="altphoneno"><%=data.altphoneno%></span>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

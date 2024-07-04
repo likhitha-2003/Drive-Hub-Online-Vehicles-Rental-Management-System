@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help and Support - DriveHub</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            margin-right: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 0;
+            flex-grow: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .question:hover {
+            background-color: #e9e9e9;
+        }
+
+        .answer {
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-link {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/images/logo.jpg" alt="DriveHub Logo" class="logo" height="50px" width="150px">
+        <h1>Help and Support</h1>
+    </div>
+
+    <div class="container">
+        <div class="question" onclick="toggleAnswer('q1')">1. How do I make a reservation?</div>
+        <div class="answer" id="q1">To make a reservation, simply visit our website or mobile app, select your desired vehicle, rental dates, and location, and proceed with the booking process.</div>
+        
+        <div class="question" onclick="toggleAnswer('q2')">2. What types of vehicles do you offer?</div>
+        <div class="answer" id="q2">We offer a variety of vehicles including cars, SUVs, vans, and motorcycles to suit your transportation needs.</div>
+        
+        <div class="question" onclick="toggleAnswer('q3')">3. Can I cancel my booking after it's confirmed?</div>
+        <div class="answer" id="q3">Yes, you can cancel your booking before picking up the vehicle. However, once you've taken possession of the vehicle, cancellations are not allowed.</div>
+        
+        <div class="question" onclick="toggleAnswer('q4')">4. What are the requirements for renting a vehicle?</div>
+        <div class="answer" id="q4">To rent a vehicle, you must have a valid driver's license and meet the minimum age requirement set by our company.</div>
+        
+        <div class="question" onclick="toggleAnswer('q5')">5. Do you provide insurance coverage?</div>
+        <div class="answer" id="q5">Yes, we offer insurance options to provide coverage for your rental vehicle. Please inquire about our insurance policies during the booking process.</div>
+        
+        <div class="question" onclick="toggleAnswer('q6')">6. What if I encounter an issue with the vehicle during my rental period?</div>
+        <div class="answer" id="q6">If you experience any issues with the vehicle, please contact our customer support team immediately for assistance.</div>
+        
+        <div class="question" onclick="toggleAnswer('q7')">7. Are there any additional charges or fees?</div>
+        <div class="answer" id="q7">Additional charges may apply for optional extras or services. Please review your rental agreement for details on any additional fees.</div>
+        
+        <div class="question" onclick="toggleAnswer('q8')">8. Can I modify my reservation after it's been confirmed?</div>
+        <div class="answer" id="q8">Yes, you may be able to modify your reservation depending on availability and the terms of your rental agreement. Please contact our customer support team for assistance.</div>
+        
+        <div class="question" onclick="toggleAnswer('q9')">9. What payment methods do you accept?</div>
+        <div class="answer" id="q9">We accept various payment methods including credit cards, debit cards, and online payment platforms. Please check our website for accepted payment methods.</div>
+        
+        <div class="question" onclick="toggleAnswer('q10')">10. Do you offer roadside assistance?</div>
+        <div class="answer" id="q10">Yes, we provide roadside assistance to ensure your safety and convenience during your rental period. Contact our customer support team for assistance.</div>
+        
+        <div class="question" onclick="toggleAnswer('q11')">11. How do I contact customer support?</div>
+        <div class="answer" id="q11">You can reach our customer support team by phone, email, or through the contact form on our website. We're available to assist you 24/7.</div>
+    </div>
+
+    <div class="container">
+        <p>For any further queries, <span class="contact-link" onclick="redirectToContact()">contact us here</span>.</p>
+    </div>
+
+
+    <script>
+        function toggleAnswer(id) {
+            var answer = document.getElementById(id);
+            if (answer.style.display === "none") {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+
+        function redirectToContact() {
+            window.location.href = "/contact";
+        }
+    </script>
+</body>
+</html>

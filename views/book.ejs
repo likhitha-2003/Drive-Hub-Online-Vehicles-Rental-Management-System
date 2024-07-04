@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            font-family: "Poppins", sans-serif;
+        }
+        .active {
+  background-color: #59ff8257;
+  color: #ffffff;
+}
+        #products {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-column-gap: 1.5em;
+            padding: 2em 0;
+        }
+        .card {
+            background-color: rgba(112, 199, 219, 0.159);
+            width: 55vw;
+            height: 150vh;
+            margin-top: 1em;
+            margin-left: 350px;
+            padding: 1em;
+            border-radius: 10px; /* Horizontally center content */
+            box-shadow: 1em 2em 2.5em rgba(7, 8, 17, 0.08);
+        }
+        .container {
+            padding-top: 1em;
+            color: #110f29;
+            margin-left: 200px;
+        }
+        .container h5 {
+            font-weight: 500;
+        }
+        .hide {
+            display: none;
+        }
+        #card2 {
+            background-color: rgb(255, 255, 255);
+            width: 30vw;
+            height: 70vh;
+            margin-top: 100px;
+            margin-left: 80px;
+            margin-bottom: 50px;
+            border-radius: 10px; /* Horizontally center content */
+            color: blue;
+        }
+        .container2 {
+            padding-top: 1em;
+            color: #110f29;
+            margin-left: 50px;
+        }
+        .container2 h5 {
+            font-weight: 500;
+        }
+        #billcontent1,#billcontent2,#billcontent3,#billcontent4,#billcontent5{
+            color: black;
+            font-size: large;
+           margin-bottom: 50px;
+           margin-top: 50px;
+        }
+        #card2-btn
+        {
+            background-color: #4ae25c;
+            color: black;
+            margin-left: 30px;
+            width: 120px;
+            height: 50px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 720px) {
+            img {
+                max-width: 100%;
+                object-fit: contain;
+                height: 10em;
+            }
+            .card {
+                max-width: 10em;
+                margin-top: 1em;
+            }
+            #products {
+                grid-template-columns: auto auto;
+                grid-column-gap: 1em;
+            }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            margin-right: 10px;
+        }
+        .nav-options {
+            display: flex;
+            align-items: center;
+        }
+        .nav-options a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .nav-options a:hover {
+            color: #4a90e2;
+        }
+        .main-heading {
+            text-align: center;
+            font-size: 48px;
+            margin-top: 50px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .sub-heading {
+            text-align: center;
+            color: #4a90e2;
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        .carousel-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-image {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 600px; /* Adjust the width as needed */
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .arrow.left {
+            left: 0;
+        }
+
+        .arrow.right {
+            right: 0;
+        }
+        .search-bar {
+            position: relative;
+            top: 30px;
+            left: 140px;
+            margin: 10px ;
+            width: 70%;
+            background-color: rgb(255, 255, 255);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow */
+            padding: 20px;
+        }
+        .search-bar label {
+            display: block;
+            margin-bottom: 10px;
+            color: #bf0f0f55;
+        }
+        .search-bar input {
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #cccccc9b;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        #proceed{
+            position: relative;
+            top: 40px;
+            margin-left: 300px ;
+            margin-bottom:20px ;
+            width: 30%;
+            background-color: greenyellow;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow */
+            padding: 20px;
+            cursor: pointer;
+        }
+        .calendar,.date,.into{
+            position: relative;
+            top: 40px;
+            margin-left: 150px ;
+            margin-bottom:20px ;
+            width: 70%;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow */
+            padding: 20px;
+        }
+        .calendar label,.date label {
+            display: block;
+            margin-bottom: 20px ;
+            color: #333;
+        }
+
+        .calendar input,.date input {
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none; 
+        }
+        .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 1000px;
+    height: 700px;
+}
+.popup-container {
+    text-align: center;
+    display: inline-flex;
+}
+
+.popup input[type="text"],
+.popup select {
+    border: 1px solid black;
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.popup button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+.rights {
+            width: 45%;
+            margin-left: 30px;
+            margin-top: 150px;
+        }
+         .rights h3 {
+            margin-bottom: 10px;
+        }
+     .rights input, .rights select {
+            width: 80%;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+         .rights label {
+            display: block;
+            margin-bottom: 10px;    
+        }
+
+         .rights #zip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Increase size of the expiry month dropdown */
+        .rights select[name="expmonth"] {
+            height: 40px;
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body></body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/register_login"><img class="img" src="/images/logo.jpg" alt="Bookify Logo" height="50px" width="150px"></a>
+        </div>
+        <div class="nav-options">
+            <a href="/userpage/<%=username%>">Home</a>
+        </div>
+    </div>
+    <div class="main-heading">Book Your Vehicle</div>
+    <div class="sub-heading">Select According to Your Need</div>
+    <div id="products">
+            <div class="card  <%= x.category%> <%= x.fuel%> <%= x.seats%>">
+                <div class="carousel-container">
+                    <div class="carousel-images">
+                        <% images.forEach((y)=>{ %>
+                        <img class="carousel-image" src="<%=y%>" alt="<%=x.vehicleid %>">
+                        <%})%>
+                    </div>
+                    <div class="arrow left" onclick="prevImage()">&#10094;</div>
+                    <div class="arrow right" onclick="nextImage()">&#10095;</div>
+                </div>
+                <div class="container">
+                    <h1 class="product-name"><%= x.name%></h1>
+                    <br>
+                    <h3 class="fuel_seat">&nbsp<b><%= x.fuel %></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><%= x.seats %></b>&nbsp;Seats</h3>
+                    <h3 class="rat-tri">⭐&nbsp<b><%= x.rating %></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><%= x.trips %></b>&nbsp;Trips</h4>
+                    <h3>&nbsp;₹&nbsp;<%= x.cost%>&nbsp;/hr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: green;"><%= x.status%></b></h3>
+                </div>
+    <form  action="/<%= username %>/<%= x.vehicleid%>/payment" method="POST">
+    <div class="calendar">
+        <label for="date"><h3>Select receiving Date and Time:</h3></label>
+        <input type="datetime-local"  id="startdate" name="startdate" required>
+    </div>
+    <div class="date">
+        <label for="time"><h3>Select returning Date and Time:</h3></label>
+        <input type="datetime-local"  id="returndate" name="returndate" required>
+    </div>
+ <button type="button" id="proceed"  onclick="openPopup('<%= x.cost%>')">Proceed</button>
+ <div class="overlay" onclick="closePopup()"></div>
+    <div class="popup"> 
+        <h1 >Payment details</h1>
+        <div class="popup-container">
+            <div id="card2" class="hide">
+    <div id="billcontent1"><h3  style="display: inline;"  >No of hours:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h3 id="hours" style="color: #110f29; display: inline;" ></h3> </h3> </div>
+    <div id="billcontent2"><h3 style="display: inline;"  >Trip cost:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 id="tripcost" style="color: #110f29;display: inline;"></h3> </h3> </div>
+    <div id="billcontent3"><h3 style="display: inline;"   >SGST:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 id="sgst" style="color: #110f29;display: inline;"></h3 ></h3> </div>
+    <div id="billcontent4" ><h3 style="display: inline;" >CGST:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 id="cgst" style="color: #110f29;display: inline;"></h3></h3>  </div>
+    <div id="billcontent5"><h3 style="display: inline;  " >Total cost:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 id="totalcost" name="totalcost" style="color: #110f29; display: inline;"></h3></h3>   </div>
+    </div>
+    <div class="rights">
+        <form id="payment-form">
+            <label>
+                Accepted Card
+                <br>
+                <img src="/images/card_1.png" width="100">
+                <img src="/images/card_2.png" width="50">
+            </label>
+            <label style="margin-top: 20px;">
+                Credit card number
+                <input style="margin: 8px; width: 320px;" type="text" name="cardnumber" placeholder="Enter card number" required>
+            </label>
+            <label>
+                Exp month
+                <select style="margin: 8px; width: 320px;" name="expmonth" required>
+                    <option value="">Choose Month..</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </label>
+            <div id="zip">
+                <label>
+                    Exp year
+                    <select name="expyear" style="margin: 8px; width: 130px;" required>
+                        <option value="">Choose Year..</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                        <option>2026</option>
+                        <option>2027</option>
+                        <option>2028</option>
+                        <option>2029</option>
+                        <option>2030</option>
+                    </select>
+                </label>
+                <label>
+                    CVV
+                    <input style="border: 1px solid black; height: 35px;" type="number" name="cvv" placeholder="CVV" pattern="[0-9]{3}" title="CVV must be exactly 3 digits" required>
+                </label>
+            </div>
+    <button id="card2-btn" type="submit" data-custom-value="<%= x.vehicleid%>" data-username="<%= username %>" name="totalcost"></button>
+    <div class="notification" id="notification"></div>
+        </div>
+ </form>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const imagesContainer = document.querySelector('.carousel-images');
+        const images = document.querySelectorAll('.carousel-image');
+        const imageWidth = images[0].clientWidth;
+        function showImage(index) {
+            imagesContainer.style.transform = `translateX(-${index * imageWidth}px)`;
+        }
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+function openPopup(cost) {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    document.getElementById("card2").classList.remove("hide");
+    document.getElementById("card2").classList.add("active");
+    const startdate=document.getElementById("startdate").value;
+    const returndate=document.getElementById("returndate").value;
+    const date1 = new Date(startdate);
+    const date2 = new Date(returndate);
+    const diffMilliseconds = Math.abs(date2 - date1);
+    const hoursDifference = diffMilliseconds / (1000 * 60 * 60);
+    const hours= Math.floor(hoursDifference);
+    const tripcost=hours*cost;
+    const sgst=Math.ceil(0.09*tripcost);
+    const totalcost=tripcost+sgst+sgst;
+    document.getElementById("hours").innerText=hours;
+    document.getElementById("tripcost").innerText=tripcost;
+    document.getElementById("sgst").innerText=sgst;
+    document.getElementById("cgst").innerText=sgst;
+    document.getElementById("totalcost").innerText=totalcost;
+    document.getElementById('card2-btn').innerText=`pay ₹ ${totalcost}`
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+function closePopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+    </script>
+</body>
+
+</html>

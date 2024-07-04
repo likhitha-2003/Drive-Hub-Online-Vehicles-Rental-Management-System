@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current bookings</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            font-family: "Poppins", sans-serif;
+        }
+        .active {
+  background-color: #6759ff;
+  color: #ffffff;
+}
+        .card {
+            background-color: #ffffff;
+            display: flex; /* Use flexbox to layout children */
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+            width: 1200px;
+            height: 250px;
+            margin-top: 3em;
+            margin-left: 100px;
+            margin-bottom: 20px;
+            padding: 1em;
+            border-radius: 5px;
+            box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
+        }
+        .search-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .search-bar {
+        padding: 5px;
+        width: 200px;
+        margin: 30px;
+        border: 1px solid black;
+
+    }
+        .image-container {
+            text-align: center;
+            flex: 1; /* Occupy remaining space */
+            margin-left: 0px;
+        }
+        .image-container img {
+            max-width: 100%;
+            object-fit: contain;
+            height: 15em;
+        }
+        .container {
+            flex: 1; /* Occupy remaining space */
+    padding: 10px;
+            color: #110f29;
+            margin-top: 20px;
+        }
+        .container h5 {
+            font-weight: 500;
+        }
+        @media screen and (max-width: 720px) {
+            img {
+                max-width: 100%;
+                object-fit: contain;
+                height: 10em;
+            }
+            .card {
+                max-width: 10em;
+                margin-top: 1em;
+            }
+            #products {
+                grid-template-columns: auto auto;
+                grid-column-gap: 1em;
+            }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .navbar {
+            background-color: #20a3c7;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            margin-right: 10px;
+        }
+        .nav-options {
+            display: flex;
+            align-items: center;
+        }
+        .nav-options a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .nav-options a:hover {
+            color: #4a90e2;
+        }
+        .main-heading {
+            text-align: center;
+            font-size: 48px;
+            margin-top: 50px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #content {
+            margin-left: 25%;
+            width: 75%;
+            padding: 20px;
+        }
+        .hide{
+            display: none;
+        }
+        .popup{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 300px;
+}
+.popup-container {
+    text-align: center;
+}
+.popup button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin:20px
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+    </style>
+</head>
+<body></body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/register_login"><img class="img" src="/images/logo.jpg" alt="Bookify Logo" height="50px" width="150px"></a>
+        </div>
+        <div class="nav-options">
+            <a href="/admin/dashboard">Home</a>
+        </div>
+    </div>
+
+    <div class="main-heading">Current bookings Management</div>
+    <div class="search-container">
+        <input type="text" class="search-bar" id="search-input" placeholder="Search...">
+        <button style="cursor: pointer; background-color: green; color: white; width: 60px; height: 35px;" class="search-button" id="search-button" onclick="search()">Search</button>    </div>
+    <div id="products">
+        <% data.forEach((x)=>{ %>
+            <div class="card">
+                <span class="image-container" style="display: inline;">
+                    <img src="<%= (x.vehicleimage.split(/\s+/))[0]%>" alt="<%= x.vehicleid%>" width="300px" height="300px">
+                </span>
+                <span class="container" style="display: inline;">
+                    <h3 class="product-name"><%= x.username%></h3><br>
+                    <h3><%= x.name%></h3>
+                    <br>
+                    <h3>Start date and time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= x.startdate%></h3>
+                    <br>
+                    <h3>Return date and time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= x.returndate%></h3>
+                    <br>
+                    <h3>Total cost&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= x.totalcost%></h3>
+                    <br>
+                </span>
+                <span>  <button onclick="openPopup('<%=x.username%>','<%=x.vehicleid%>')" style="cursor: pointer; color: rgb(16, 15, 15); background-color: rgb(247, 136, 18); height: 50px; width:150px ;  display: inline; margin: 20px;">Mark Reached</button></span>
+            </div>
+            <div class="overlay" onclick="closePopup()"></div>
+    <div class="popup">
+        <div class="popup-container">
+               <h1>Is this vehicle returned?</h1>
+               <div style="display: inline-flex; margin-top: 60px;"> 
+                <button  onclick="closePopup()">NO</button>
+                <button  id="yes-button" >YES</button>
+               </div>
+        </div>
+    </div>
+            <%})%>
+    </div>
+    <script src="/js/userpage.js"></script>
+    <script>
+     function openPopup(username,id) {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+    document.getElementById('yes-button').setAttribute('onclick', `window.location.href='/admin/receivevehicle/${username}/${id}'`);
+}
+function closePopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}   
+function search()
+{
+    let searchInput = document.getElementById("search-input").value;
+  let elements = document.querySelectorAll(".product-name");
+  let cards = document.querySelectorAll(".card");
+  elements.forEach((element, index) => {
+    //check if text includes the search value
+    if (element.innerText.includes(searchInput.toLowerCase())) {
+      //display matching card
+      cards[index].classList.remove("hide");
+    } else {
+      //hide others
+      cards[index].classList.add("hide");
+    }
+  });
+}
+    </script>
+</body>
+
+</html>
+
+

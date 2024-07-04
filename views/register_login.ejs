@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> User Registration and Login</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('/images/carandbike.jpg');
+            /* Background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            overflow: hidden;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            /* Ensure navbar is above other elements */
+        }
+        .navbar a {
+            color: rgb(94, 255, 0);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+            padding: 10px;
+            /* Adjusted padding */
+            transition: color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #e9ecef;
+            color: black;
+        }
+
+        .container {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .login {
+            position: relative;
+            top: 20px;
+            height: auto;
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            /* Add shadow for depth */
+        }
+
+        form {
+            color: white;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            height: 40px;
+            width: 100%;
+            margin: 10px 0;
+            padding: 0 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.747);
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .signin,
+        .btn-register {
+            height: 40px;
+            width: 100%;
+            margin: 10px 0;
+            border: none;
+            border-radius: 20px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signin:hover,
+        .btn-register:hover {
+            background-color: #45a049;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .forgot-password {
+            color: rgb(7, 117, 242);
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .register-link {
+            color: #e0f906;
+            margin-top: 20px;
+            display: block;
+        }
+
+        .register-link:hover {
+            color: #d9e908;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-left: 20px;
+        }
+        @media screen and (max-width: 600px) {
+    .login {
+        width: 90%; /* Adjust width */
+        padding: 20px; /* Adjust padding */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: calc(100% - 20px); /* Adjust width */
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .navbar a {
+        margin: 5px;
+        font-size: 16px; /* Adjust font size */
+    }
+
+    .logo img {
+        margin: 0;
+    }
+
+    .container {
+        margin-top: 80px; /* Adjust margin */
+    }
+}
+.notification {
+  position: fixed;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(2, 2, 2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.099);
+  z-index: 9999;
+  display: none;
+}
+.notification.success {
+  color: #4CAF50;
+  font-size: medium;
+  font-weight: bold;
+}
+.notification.error {
+ color: #f44336;
+ font-size: medium;
+  font-weight: bold;
+}
+.notification.warning {
+  color: #ff9800;
+  font-size: medium;
+  font-weight: bold;
+}
+.notification.info {
+  color: #2196F3;
+  font-size: medium;
+  font-weight: bold;
+}
+    </style>
+</head>
+
+<body> 
+    <div class="navbar">
+        <a href="register_login"><img src="/images/logo.jpg" alt="Company Logo" height="50px" width="150px"></a>
+        <a href="/abtcomp">About the company</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/services">Services</a>
+        <a style="color: yellow; background-color:rgba(240, 248, 255, 0.199);" href="adminlogin">Admin Login</a>
+    </div>
+    
+    <div class="container">
+        <div class="login">
+            <h1 class="welcome-text">Welcome to DriveHub</h1>
+            <h3 class="book-text">Book your vehicle you want</h3>
+            <div><b>Login Here</b></div>
+            <form id="sign-in form" action="/userpage" method="post">
+                <input type="text" id="username" name="username" placeholder="Username/ Gmail id" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <button type="submit" class="signin">Sign In</button> 
+                <div class="notification" id="notification"></div>
+                <hr>
+            </form>
+            <span class="register-link">If not registered?</span>
+            <button class="btn-register">Register</button>
+        </div>
+    </div>
+    <script>
+        (document.getElementsByClassName("btn-register"))[0].addEventListener("click", () => {
+            window.location.href='/register'
+        })
+        document.getElementById("sign-in form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  // Send login credentials to backend
+  fetch("/userpage", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username: username, password: password })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      showNotification(data.message,data.type);
+      setTimeout(function() {
+        window.location.href = `/userpage/${username}`;
+      }, 2000);
+    } else {
+        showNotification(data.message,data.type);
+    }
+  })
+  .catch(error => console.error("Error:", error));
+});
+function showNotification(message, type) {
+  var notification = document.getElementById("notification");
+  notification.textContent = message;
+  notification.classList.add("notification",type);
+  notification.style.display = "block";
+  // Hide the notification after 3 seconds
+  setTimeout(function() {
+    notification.style.display = "none";
+    notification.classList.remove(type); // Remove the type class after hiding
+  }, 3000);
+}
+    </script>
+</body>
+
+</html>

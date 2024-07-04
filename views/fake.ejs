@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Queries - DriveHub</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            width: calc(100% - 0px);
+            margin: 0 auto;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .logo {
+            margin-left: 20px;
+            max-width: 150px;
+            height: auto;
+        }
+
+        .header-text {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 24px;
+            margin-left: -5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #e2ecee;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .query-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .option {
+            display: inline-block;
+            margin-right: 20px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #555;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.jpg" alt="Company Logo" class="logo">
+        <div class="header-text">
+            <h1>Clear your queries here</h1>
+        </div>
+        <div class="option" onclick="goToHome()">Home</div>
+    </div>
+
+    <div class="container">
+        <h2>Post your queries here:</h2>
+        <div class="options">
+            <div class="option" onclick="showQuery('vehicles')">About Vehicles</div>
+            <div class="option" onclick="showQuery('other')">Any Other</div>
+        </div>
+        <div id="vehicles" class="query-container">
+            <h3>About Vehicles:</h3>
+            <form>
+                <label for="vehicle-name">Vehicle Name:</label>
+                <input type="text" id="vehicle-name" name="vehicle-name">
+                <label for="vehicle-issue">Issue:</label>
+                <textarea id="vehicle-issue" name="vehicle-issue" rows="4" cols="50"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="other" class="query-container">
+            <h3>Any Other:</h3>
+            <form>
+                <label for="other-issue">Issue:</label>
+                <textarea id="other-issue" name="other-issue" rows="4" cols="50"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showQuery(queryType) {
+            var containers = document.getElementsByClassName('query-container');
+            for (var i = 0; i < containers.length; i++) {
+                containers[i].classList.remove('show');
+            }
+            document.getElementById(queryType).classList.add('show');
+        }
+
+        function goToHome() {
+            window.location.href = "user_login.html"; // Change this to your actual user login page URL
+        }
+    </script>
+</body>
+</html>

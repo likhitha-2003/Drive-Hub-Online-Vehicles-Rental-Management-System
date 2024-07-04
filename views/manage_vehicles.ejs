@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vehicle Management</title>
+<link rel="icon" href="/images/logo.jpg">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    nav {
+        background-color: #0cdefa;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+    .logo {
+        width: 50px;
+        height: auto;
+    }
+    .heading {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .search-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .search-bar {
+        padding: 5px;
+        width: 200px;
+        margin: 30px;
+    }
+    .buttons-container {
+        margin-top: 10px;
+        text-align: center;
+        margin: 30px;
+    }
+    .add-button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-left: 70px;
+    }
+    .card {
+        margin: 20px auto;
+        width: 70%;
+        height: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 2px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+    }
+    .card-content {
+        display: flex;
+        justify-content: space-between;
+    }
+    .image-container {
+        width: 30%;
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+    .image {
+        max-width: 100%;
+        height: auto;
+    }
+    .content-container {
+        width: 40%;
+    }
+    .manage-container {
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+    }
+    .edit-button, .delete-button {
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 30px;
+    }
+    .hide {
+            display: none;
+        }
+        .active {
+  background-color: white;
+  color: black;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 550px;
+}
+
+.popup-container {
+    text-align: center;
+}
+
+.popup input[type="text"],
+.popup select {
+    border: 1px solid black;
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.popup button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+.popupdelete{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 300px;
+}
+.popupdelete-container {
+    text-align: center;
+}
+
+.popupdelete button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin:20px
+}
+.overlaydelete {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+.popupedit{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 500px;
+}
+.popupedit-container{
+    text-align: center;
+}
+.popupedit input[type="text"],
+.popupedit select {
+    border: 1px solid black;
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.popupedit button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.overlayedit {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+</style>
+</head>
+<body>
+<nav>
+    <a href="/register_login"><img class="img" src="/images/logo.jpg" alt="Bookify Logo" height="50px" width="150px"></a>
+    <a  style="color: rgb(18, 229, 240); align-items: center; background-color: #f91212; height: 30px; width: 45px; align-content: center;" href="/admin/dashboard">Home</a>
+</nav>
+<h1 class="heading">Vehicle Details</h1>
+<div class="search-container">
+    <input type="text" class="search-bar" id="search-input" placeholder="Search...">
+    <button class="search-button" id="search-button" onclick="search()">Search</button>
+    <button class="add-button" onclick="openPopup()">Add Vehicle</button>
+</div>
+<% data.forEach((x)=>{ %>
+<div class="card active">
+    <div class="card-content">
+        <div class="image-container">
+            <img src="<%= x.vehicleimage ? (x.vehicleimage.split(/\s+/))[0] : '' %>" alt="<%= x.vehicleid %>" width="200px" height="150px">
+        </div>
+        <div class="content-container">
+            <h3 class="product-name"><%= x.name%></h3>
+            <h4 class="fuel_seat">&nbsp<b><%= x.fuel %></b>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;<b><%= x.seats %></b>&nbsp;Seats</h4>
+            <h4 class="rat-tri">⭐&nbsp<b id="vehiclerating" ><%= x.rating %></b>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><%= x.trips %></b>&nbsp;Trips</h4>
+            <h4>&nbsp;₹&nbsp;<%= x.cost%>&nbsp;/hr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><%= x.category %></b></h4>
+            <h4 style="color: green;"><%= x.status%></h4>
+        </div>
+        <div class="manage-container">
+            <button class="edit-button" id="edit-button" onclick='openPopupedit("<%=x.vehicleid%>","<%=x.name%>","<%=x.rating%>","<%=x.cost%>","<%=x.category%>","<%=x.fuel%>","<%=x.seats%>")'>Edit</button>
+            <button type="button" class="delete-button" id="delete-button" onclick="openPopupdelete('<%=x.vehicleid%>')" id="delete-button">Delete</button>
+        </div>
+    </div>
+    <div class="overlaydelete" onclick="closePopupdelete()"></div>
+    <div class="popupdelete">
+        <div class="popupdelete-container">
+               <h1>Do you want to delete this record?</h1>
+               <div style="display: inline-flex; margin: 20px;"> 
+                <button  onclick="closePopupdelete()">NO</button>
+                <button  id="yes-button" >YES</button>
+               </div>
+        </div>
+    </div>
+    <div class="overlayedit" onclick="closePopupedit()"></div>
+    <div class="popupedit">
+        <div class="popupedit-container">
+            <form id="editForm" method="post">
+                <label for="vehicleid">Vehcile ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="evehicleid" name="evehicleid"><br>
+                <label for="name">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="ename" name="ename"><br>
+                <label for="rating">Rating:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="erating" name="erating"><br>
+                <label for="cost">Cost:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="ecost" name="ecost"><br>
+                <label for="category">Category:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="ecategory" name="ecategory"><br>
+                <label for="fuel">Fuel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="efuel" name="efuel"><br>
+                <label for="seats">Seats:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="eseats" name="eseats"><br>
+                <button type="submit">Save</button>
+        </form>
+        </div>
+    </div>
+    </div>
+    <%});%>
+    <div class="overlay" onclick="closePopup()"></div>
+    <div class="popup"> 
+        <div class="popup-container">
+            <form action="/admin/addvehicle" method="post">
+                <label for="vehicleid">Vehicle ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="vehicleid" name="vehicleid"><br>
+                <label for="vehicleimage">Vehicle Image:</label>
+                <input type="text" id="vehicleimage" name="vehicleimage"><br>
+                <label for="name">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="name" name="name"><br>
+                <label for="rating">Rating:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="rating" name="rating"><br>
+                <label for="cost">Cost:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="cost" name="cost"><br>
+                <label for="category">Category:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="category" name="category"><br>
+                <label for="fuel">Fuel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="fuel" name="fuel"><br>
+                <label for="seats">Seats:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="seats" name="seats"><br>
+                <button type="submit">Submit</button>
+        </form>
+        </div>
+    </div>
+<script>
+function openPopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+function closePopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+function openPopupedit(vehicleid,name,rating,cost,category,fuel,seats) {
+    let popup = document.querySelector('.popupedit');
+    let overlay = document.querySelector('.overlayedit');
+    document.getElementById('evehicleid').value = vehicleid;
+    document.getElementById('ename').value = name;
+    document.getElementById('erating').value = rating;
+    document.getElementById('ecost').value = cost;
+    document.getElementById('ecategory').value = category;
+    document.getElementById('efuel').value = fuel;
+    document.getElementById('eseats').value = seats;
+    document.getElementById('editForm').action = '/admin/editvehicle/'+ vehicleid;
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+function closePopupedit() {
+    let popup = document.querySelector('.popupedit');
+    let overlay = document.querySelector('.overlayedit');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+document.getElementById('save-buttonedit').addEventListener('click', () => {
+    closePopupedit();
+});
+function openPopupdelete(vehicleid) {
+    let popup = document.querySelector('.popupdelete');
+    let overlay = document.querySelector('.overlaydelete');
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+    document.getElementById('yes-button').setAttribute('onclick', `window.location.href='/admin/deletevehicle/${vehicleid}'`);
+    //document.getElementById('yes-button').onclick=window.location.href="/admin/deletevehicle/"+vehicleid;
+}
+function closePopupdelete() {
+    let popup = document.querySelector('.popupdelete');
+    let overlay = document.querySelector('.overlaydelete');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+function search()
+{
+    let searchInput = document.getElementById("search-input").value;
+  let elements = document.querySelectorAll(".product-name");
+  let cards = document.querySelectorAll(".card");
+  elements.forEach((element, index) => {
+    //check if text includes the search value
+    if (element.innerText.includes(searchInput.toUpperCase())) {
+      //display matching card
+      cards[index].classList.remove("hide");
+    } else {
+      //hide others
+      cards[index].classList.add("hide");
+    }
+  });
+}
+</script>
+</body>
+</html>

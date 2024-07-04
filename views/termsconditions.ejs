@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <link rel="icon" href="/images/logo.jpg">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #007bff;
+        }
+        .term {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .checkbox-label {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .btn-container {
+            text-align: center;
+        }
+        .btn {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/register_login"><img src="/images/logo.jpg" alt="Company Logo " width="150px" height="50px"></a>
+    </div>
+    <div class="container">
+        <h1>Terms and Conditions</h1>
+        <div class="term">
+            <strong>1. Hourly Rental Basis:</strong> Drive Hub offers an hourly rental service for both cars and bikes. From the time of pickup until the vehicle is returned, users are billed based on the amount of time they use the vehicle.
+        </div>
+        <div class="term">
+            <strong>2. Reservation and Cancellation:</strong> Customers can reserve rental vehicles through Drive Hub's online platform or by contacting customer support. After the user receives the vehicle, cancellation is not allowed. Users are obligated to the rental period once the vehicle has been picked up, and cancellations are not possible.
+        </div>
+        <div class="term">
+            <strong>3. License Requirement:</strong> Users must provide a valid driver's license ID before completing a reservation. Users will not be allowed to proceed with the reservation process until a valid ID is presented. This precaution ensures that rental car agreements comply with safety regulations and legal requirements.
+        </div>
+        <div class="term">
+            <strong>4. Penalties for Delay:</strong> It is necessary for users to return the rented vehicle within the predetermined window of time. Penalties for not complying with this agreement could be assessed at an hourly rate for the extra time beyond the prearranged return time.
+        </div>
+        <div class="term">
+            <strong>5. Penalties for Breakdown:</strong> In case of a mechanical problem or breakdown with the rental vehicle while in use, users should immediately contact Drive Hub's customer service. Drive Hub will provide immediate assistance and arrange for a replacement vehicle if necessary.
+        </div>
+        <div class="term">
+            <strong>6. Pickup and Return Locations:</strong> Users have the flexibility to pick up the rented vehicle from one Drive Hub branch and return it to any other branch within the designated service area. However, users must inform Drive Hub in advance regarding their preferred pickup and return locations.
+        </div>
+        <div class="term">
+            <strong>7. Responsibility for Vehicle:</strong> Users are responsible for the rented vehicle from the time of pickup until it is returned to Drive Hub. Any damage or loss incurred during this period will be the responsibility of the user, and appropriate charges may apply for repairs or replacement.
+        </div>
+        <div class="term">
+            <strong>8. Compliance with Traffic Laws:</strong> Users must comply with all local traffic laws and regulations while operating the rented vehicle. Drive Hub reserves the right to terminate the rental agreement if users are found to be in violation of any traffic laws or engaged in illegal activities.
+        </div>
+        <div class="term">
+            <strong>9. Safety and Maintenance:</strong> Drive Hub ensures that all rental vehicles undergo regular maintenance and safety inspections. Users are expected to report any issues or concerns regarding the vehicle's condition promptly.
+         </div>
+        <div class="term">
+            <strong>10. Agreement Acceptance:</strong> By using Drive Hub's rental services, users agree to abide by these terms and conditions outlined herein. Failure to comply with these terms may result in the termination of the rental agreement and additional charges or penalties.
+         </div>
+        <!--<div class="checkbox-label">
+            <input type="checkbox" id="agree-checkbox">
+            <label for="agree-checkbox">I agree and accept all the policies</label>
+        </div>
+        <div class="btn-container">
+            <button class="btn" onclick="proceedBooking()">Proceed to Booking</button>
+        </div>-->
+    </div>
+
+    <script>
+        function proceedBooking() {
+            var checkBox = document.getElementById("agree-checkbox");
+            if (checkBox.checked == true) {
+                window.location.href = "userpage.html"; // Redirect to booking page
+            } else {
+                alert("Please agree to the terms and conditions to proceed.");
+            }
+        }
+    </script>
+</body>
+</html>

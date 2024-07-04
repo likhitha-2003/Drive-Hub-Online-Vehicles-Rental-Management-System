@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Management</title>
+<link rel="icon" href="/images/logo.jpg">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    nav {
+        background-color: #0cdefa;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+    .logo {
+        width: 50px;
+        height: auto;
+    }
+    .heading {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .search-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .search-bar {
+        padding: 5px;
+        width: 200px;
+        margin: 30px;
+    }
+    .buttons-container {
+        margin-top: 10px;
+        text-align: center;
+        margin: 30px;
+    }
+    .add-button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-left: 70px;
+    }
+    .card {
+        margin: 20px auto;
+        width: 70%;
+        height: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 2px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+    }
+    .card-content {
+        display: flex;
+        justify-content: space-between;
+    }
+    .image-container {
+        width: 30%;
+        margin-top: 0px;
+        margin-left: 30px;
+    }
+    .image {
+        max-width: 100%;
+        height: auto;
+    }
+    .content-container {
+        width: 40%;
+    }
+    .manage-container {
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+    }
+    .edit-button, .delete-button {
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 30px;
+    }
+    .hide {
+            display: none;
+        }
+        .active {
+  background-color: white;
+  color: black;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 700px;
+}
+.popup-container {
+    text-align: center;
+}
+.popup input[type="text"],
+.popup select {
+    border: 1px solid black;
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.popup button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+.popupdelete{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 300px;
+}
+.popupdelete-container {
+    text-align: center;
+}
+.popupdelete button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin:20px
+}
+.overlaydelete {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+.popupedit{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 500px;
+    height: 650px;
+}
+.popupedit-container{
+    text-align: center;
+}
+.popupedit input[type="text"],
+.popupedit select {
+    border: 1px solid black;
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.popupedit button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.overlayedit {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+</style>
+</head>
+<body>
+<nav>
+    <a href="/register_login"><img class="img" src="/images/logo.jpg" alt="Bookify Logo" height="50px" width="150px"></a>
+    <a  style="color: rgb(18, 229, 240); align-items: center; background-color: #f91212; height: 30px; width: 45px; align-content: center;" href="/admin/dashboard">Home</a>
+</nav>
+<h1 class="heading">Customer Details</h1>
+<div class="search-container">
+    <input type="text" class="search-bar" id="search-input" placeholder="Search...">
+    <button class="search-button" id="search-button" onclick="search()">Search</button>
+    <button class="add-button" onclick="openPopup()">Add Customer</button>
+</div>
+<% data.forEach((x)=>{ %>
+<div class="card active">
+    <div class="card-content">
+        <div class="image-container">
+            <h5 class="product-name">Username: <%=x.username%></h5>
+            <h5 class="first-name">Firstname: <%=x.firstname%></h5>
+            <h5 >Lastname: <%=x.lastname%></h5>
+            <h5 >Mobile no: <%=x.phoneno%></h5>
+            <h5 >Gender:<%=x.gender%></h5>
+        </div>
+        <div class="content-container">
+            <h5 >Address: <%=x.address%></h5>
+            <h5 >Mobile no2: <%=x.altphoneno%></h5>
+            <h5 >Status: <%=x.status%></h5>
+            <h5 >DOB: <%=x.dob%></h5>
+        </div>
+        <div class="manage-container">
+            <button class="edit-button" id="edit-button" onclick='openPopupedit("<%=x.firstname%>","<%=x.lastname%>","<%=x.phoneno%>","<%=x.gender%>","<%=x.address%>","<%=x.dob%>","<%=x.altphoneno%>","<%=x.username%>","<%=x.status%>")'>Edit</button>
+            <button type="button" class="delete-button" id="delete-button" onclick="openPopupdelete('<%=x.username%>')" id="delete-button">Delete</button>
+        </div>
+    </div>
+    <div class="overlaydelete" onclick="closePopupdelete()"></div>
+    <div class="popupdelete">
+        <div class="popupdelete-container">
+               <h1>Do you want to delete this record?</h1>
+               <div style="display: inline-flex; margin: 20px;"> 
+                <button  onclick="closePopupdelete()">NO</button>
+                <button  id="yes-button" >YES</button>
+               </div>
+        </div>
+    </div>
+    <div class="overlayedit" onclick="closePopupedit()"></div>
+    <div class="popupedit">
+        <h2 style="margin-left:130px ;">Edit Customer Details</h2>  <br>
+        <div class="popupedit-container">
+            <form id="editForm" method="post">
+                <label for="firstname">First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="efirstname" name="efirstname" required><br>
+                <label for="lastname">Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="elastname" name="elastname" required><br>
+                <label for="phoneno">Phone Number:</label>
+                <input type="text" id="ephoneno" name="ephoneno" required><br>
+                <div>
+                    <label for="gender" style="margin-left: 0px;">Gender:&nbsp;&nbsp;&nbsp;</label>
+                <input type="radio" id="male" name="egender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="egender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="others" name="egender" value="others">
+                <label for="others">Others</label>
+                </div><br>
+                <label for="address">Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="eaddress" name="eaddress" required></input><br>
+                <label for="dob" >Date of Birth:&nbsp;&nbsp;&nbsp;</label>
+                <input style="border: 1px solid black;" type="date" id="edob" name="edob" required><br><br>
+                <label for="altphoneno">Alternate Ph no:</label>
+                <input type="text" id="ealtphoneno" name="ealtphoneno"><br>
+                <label for="username">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="eusername" name="eusername"><br>                
+                <label for="status">Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <select  style="width: 370px;" id="estatus" name="estatus" required>
+                    <option value="active">Active</option>
+                    <option value="blocked">Blocked</option>
+                </select><br>                <br>
+                <button type="submit">Save</button>
+        </form>
+        </div>
+    </div>
+    </div>
+    <%});%>
+    <div class="overlay" onclick="closePopup()"></div>
+    <div class="popup"> 
+        <div class="popup-container">
+            <h2>Add Customer Details</h2>
+            <form action="/admin/addcustomer" method="POST">
+                <label for="firstname">First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="firstname" name="firstname" required><br>
+                <label for="lastname">Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="lastname" name="lastname" required><br>
+                <label for="phoneno">Phone Number:</label>
+                <input type="text" id="phoneno" name="phoneno" required><br>
+                <div>
+                    <label for="gender" style="margin-left: 0px;">Gender:&nbsp;&nbsp;&nbsp;</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="others" name="gender" value="others">
+                <label for="others">Others</label>
+                </div><br>
+                <label for="address">Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="address" name="address" required></input><br>
+                <label for="dob" >Date of Birth:&nbsp;&nbsp;&nbsp;</label>
+                <input style="border: 1px solid black;" type="date" id="dob" name="dob" required><br><br>
+                <label for="altphoneno">Alternate Ph no:</label>
+                <input type="text" id="altphoneno" name="altphoneno"><br>
+                <label for="username">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="username" name="username"><br> 
+                <label for="status">Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="spassword" name="password" required><br>               
+                <label for="status">Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <select  style="width: 370px;" id="status" name="status" required>
+                    <option value="active">Active</option>
+                    <option value="blocked">Blocked</option>
+                </select>
+                <br>
+                <button type="submit">Add customer</button>
+              </form>
+        </div>
+    </div>
+<script>
+function openPopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+function closePopup() {
+    let popup = document.querySelector('.popup');
+    let overlay = document.querySelector('.overlay');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+function openPopupedit(firstname,lastname,phoneno,gender,address,dob,altphoneno,username,status) {
+    let popup = document.querySelector('.popupedit');
+    let overlay = document.querySelector('.overlayedit');
+    document.getElementById('efirstname').value = firstname;
+    document.getElementById('elastname').value = lastname;
+    document.getElementById('ephoneno').value = phoneno;
+    document.getElementById('eaddress').value = address;
+    document.getElementById('edob').value = dob;
+document.querySelector('input[name="egender"][value="' + gender + '"]').checked = true;
+    document.getElementById('ealtphoneno').value =altphoneno;
+    document.getElementById('eusername').value =username;
+    document.getElementById('estatus').value =status;
+    document.getElementById('editForm').action = '/admin/editcustomer/'+username;
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+function closePopupedit() {
+    let popup = document.querySelector('.popupedit');
+    let overlay = document.querySelector('.overlayedit');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+document.getElementById('save-buttonedit').addEventListener('click', () => {
+    closePopupedit();
+});
+function openPopupdelete(username) {
+    let popup = document.querySelector('.popupdelete');
+    let overlay = document.querySelector('.overlaydelete');
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+    document.getElementById('yes-button').setAttribute('onclick', `window.location.href='/admin/deletecustomer/${username}'`);
+}
+function closePopupdelete() {
+    let popup = document.querySelector('.popupdelete');
+    let overlay = document.querySelector('.overlaydelete');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+function search()
+{
+    let searchInput = document.getElementById("search-input").value;
+  let elements = document.querySelectorAll(".product-name");
+  let cards = document.querySelectorAll(".card");
+  elements.forEach((element, index) => {
+    //check if text includes the search value
+    if (element.innerText.includes(searchInput.toLowerCase())) {
+      //display matching card
+      cards[index].classList.remove("hide");
+    } else {
+      //hide others
+      cards[index].classList.add("hide");
+    }
+  });
+}
+</script>
+</body>
+</html>

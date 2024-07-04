@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logo.jpg">
+    <title>User Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fafd; /* Light gray background */
+        }
+        /* Navbar Styles */
+        .navbar {
+            background-color: #343a40; /* Dark background color */
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width:150px;
+        }
+
+        /* Search bar Styles */
+        .search-bar {
+            position: relative;
+            left: 400px;
+            margin: 10px ;
+            width: 43%;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow */
+            padding: 20px;
+        }
+        .search-bar label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .search-bar input {
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        /* Calendar Styles */
+        .calendar,.date,.into{
+            position: relative;
+            left: 400px;
+            margin: 10px ;
+            width: 40%;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow */
+            padding: 20px;
+        }
+        .calendar label,.date label {
+            display: block;
+            margin-bottom: 20px ;
+            color: #333;
+        }
+
+        .calendar input,.date input {
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none; /* Remove outline */
+        }
+        
+
+        /* Submit button Styles */
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 20px;
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Intro Styles */
+        .into {
+            color: #007bff; /* Blue color */
+            font-size: x-large;
+            font-family: cursive;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Bottom black section Styles */
+        .bottom-section {
+            background-color: black;
+            height: 100px; /* Height increased for better visibility */
+        }
+        .menu-icon {
+            display: block;
+            position: absolute;
+            top: 120px;
+            left: 15px;
+            cursor: pointer;
+        }
+        .menu {
+    display: none; /* Initially hide the menu */
+    position: absolute; /* Change position to absolute */
+    top: 110px; /* Adjusted top position */
+    left: 15px; /* Left position */
+    width: 250px;
+    height: 300px;
+    background-color: #14add3; /* Menu background color */
+    padding-top: 60px; /* To adjust for header height */
+    transition: left 0.3s ease;
+}
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 5px;
+            text-align: center;
+        }
+        .menu ul li {
+            margin-bottom: 10px;
+        }
+        .menu ul li a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #fff; /* Button background color */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .menu ul li a:hover {
+            background-color: #638a68; /* Hover background color */
+            color: white; /* Hover text color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <img src="/images/menu.png" alt="Menu Icon" width="30"> <!-- Replace 'menu.jpg' with your menu icon image path -->
+        </div>
+        <div class="logo">
+            <a href="/register_login"><img src="/images/logo.jpg" alt="Company Logo" height="50px" width="150px"></a>
+        </div>
+    </nav>
+    
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="/register_login">Home</a></li>
+            <li><a href="/Profile.html">Profile</a></li>
+            <li><a href="/History.html">History</a></li>
+            <li><a href="/Favourites.html">Favourites</a></li>
+            <li><a href="/Current_Bookings.html">Current Bookings</a></li>
+            <li><a href="/register_login">Logout</a></li>
+        </ul>
+    </div>
+    <!-- Introduction -->
+    <div class="into">Please select to proceed</div>
+    <select class="search-bar" name="Starting Point" id="starting-point">
+        <option value="">Select a Starting Point</option>
+        <option value="Benz Circle">Benz Circle</option>
+        <option value="Kanaka Durga Temple">Kanaka Durga Temple</option>
+        <option value="Prakasam Barrage">Prakasam Barrage</option>
+        <option value="Undavalli Caves">Undavalli Caves</option>
+        <option value="Mogalarajapuram Caves">Mogalarajapuram Caves</option>
+        <option value="Victoria Jubilee Museum">Victoria Jubilee Museum</option>
+        <option value="Gandhi Hill">Gandhi Hill</option>
+        <option value="Bhavani Island">Bhavani Island</option>
+        <option value="Kondapalli Fort">Kondapalli Fort</option>
+        <option value="Mangalagiri">Mangalagiri</option>
+        <option value="Hinkar Thirtha">Hinkar Thirtha</option>
+        <option value="Rajiv Gandhi Park">Rajiv Gandhi Park</option>
+        <option value="Gunadala Matha Shrine">Gunadala Matha Shrine</option>
+        <option value="Amaravathi">Amaravathi</option>
+        <option value="Kolleru Lake">Kolleru Lake</option>
+    </select>
+    
+
+    <!-- Calendar -->
+    <div class="calendar">
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date">
+    </div>
+    <div class="date">
+        <label for="time">Select Time:</label>
+        <input type="time" id="time" name="time">
+    </div>
+
+    <!-- Submit button -->
+    <button class="submit-btn">Submit</button>
+
+    <!-- Bottom black section -->
+    <div class="bottom-section"></div>
+    <script>(document.getElementsByClassName("submit-btn"))[0].addEventListener("click", () => {
+        window.location.href = '/userpage'
+    })
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+        }
+
+        /*function logout() {
+            // Redirect to logout page or perform logout operation
+            window.location.href = 'logout.html';
+        }*/
+
+        document.body.addEventListener('click', function(event) {
+            var menuIcon = document.querySelector('.menu-icon');
+            var menu = document.getElementById('menu');
+            if (!menuIcon.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
